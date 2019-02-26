@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project 3: Drawing SVGs with Data</title>
+    <script type="text/javascript" src="../d3.js"></script>
+</head>
+<body>
+    <script>
+        // random data
+        var dataset = [];
+        for (var i = 0; i < 8; i++) {
+            var newNumber = Math.floor(Math.random() * 30);
+            dataset.push(newNumber);
+        }
+        
+        const w = 500;
+        const h = 500
+
+        var svg = d3.select("body")
+                    .append("svg")
+                    .attr('width', w)
+                    .attr('height', h);
+
+        var circles = svg.selectAll("circle")
+            .data(dataset)
+            .enter()
+            .append("circle")
+
+        circles.attr('cx', function(d, i) {
+                return (i*50) + 25;
+            })
+            .attr('cy', h/2)
+            .attr('r', (d) => d)
+            .attr('fill', '#19267C')
+            .attr('stroke', '#18206D')
+            .attr('stroke-width', d => d/2)
+            
+    </script>
+</body>
+</html>
